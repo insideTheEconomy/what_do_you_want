@@ -6,7 +6,6 @@ var agegroupArray=['teenager', 'yadult', 'adult', 'senior'];
 function initializeMe() {
 	$( document ).ready(function() {
 		// Handler for .ready() called.
-		//alert("fun");
 	
 		$.getJSON('wdyw.json?t='+ new Date().getTime(),{ format: "json" })
 		.fail(function() { console.log( "error" ); })
@@ -14,7 +13,6 @@ function initializeMe() {
 			jsonObj = data;
 			jsObj = $.parseJSON( jsonObj );
 			console.log("Success");
-			//console.log(jsonObj[0].ageGroup[1].choiceOptA);
 			$('#title').html(jsonObj[0].title);
 			$('#opChoiceA').html(jsonObj[0].opChoiceA);
 			$('#opChoiceB').html(jsonObj[0].opChoiceB);
@@ -26,17 +24,32 @@ function initializeMe() {
 			$('#adult h3').html(jsonObj[0].ageGroup[2].buttonText);
 			$('#senior h3').html(jsonObj[0].ageGroup[3].buttonText);
 		})    
-		//activateInactivityTimer();
-//		restartIntro();
-		setTimeout(function(){ 
-			$("body").mousemove( function(){resetInactivityTimer()} );
-			$("body").click( function(){resetInactivityTimer()} );
-		},500);
-			$('#visualaccess').click( function(){ toggleVisibility()} );
-		launchAttract();
+
+		setTimeout( 
+			function(){
+				$("body").mousemove( function(){resetInactivityTimer()} ); 
+				$("body").click( function(){resetInactivityTimer()} ); 
+			}, 500 );
+			//$('#visualaccess').click( function(){ toggleVisibility()} );
+			$('#visualaccess').on('mousedown', function(e){ clickA.play()} );
+			$('#visualaccess').on('mouseup', function(e){ toggleVisibility()} );
+			
+			$('body').bind('keypress', function(e) {
+        		if (e.which == 113){ //'q'
+					gui.App.quit();
+				} else if (e.which == 119) { //'w'
+					gui.Window.get().leaveKioskMode();
+				}
+				//alert(e.which);
+			});
+
+			//environment.nodeWebKit = (typeof(process) === 'object' && process.features.uv) ? true : false;
+			//	if (environment.nodeWebKit === true) { require('nw.gui').Window.get().showDevTools(); }
+			launchAttract();
 	});	
 }
 function toggleVisibility() {
+	clickB.play()
 	if (!visibiltyAccess) {
 		$('#outerContainer').addClass('makeNegative');
 		visibiltyAccess=true;
@@ -46,7 +59,9 @@ function toggleVisibility() {
 	}
 }
 function activateAgeGroupButtons() {
-	$("#teenager").click(function(){
+	$('#teenager').mousedown(function(){ clickA.play(); });
+	$("#teenager").mouseup(function(){
+		clickB.play();
 		deactivateAgeGroupButtons();
 		pauseAmbience();
 		chosenAge = '#teenager';
@@ -64,7 +79,9 @@ function activateAgeGroupButtons() {
 		},3000);
 	});
 	
-	$("#youngadult").click(function(){
+	$('#youngadult').mousedown(function(){ clickA.play(); });
+	$("#youngadult").mouseup(function(){
+		clickB.play();
 		deactivateAgeGroupButtons();
 		pauseAmbience();
 		chosenAge = '#youngadult';
@@ -82,8 +99,10 @@ function activateAgeGroupButtons() {
 			activateChoiceButtonsOptAoptB();			
 		},3000);
 	});
-	
-	$("#adult").click(function(){
+
+	$('#adult').mousedown(function(){ clickA.play(); });
+	$("#adult").mouseup(function(){
+		clickB.play();
 		deactivateAgeGroupButtons();
 		pauseAmbience();
 		chosenAge = '#adult';
@@ -102,7 +121,9 @@ function activateAgeGroupButtons() {
 		},3000);
 	});
 	
-	$("#senior").click(function(){
+	$('#senior').mousedown(function(){ clickA.play(); });
+	$("#senior").mouseup(function(){
+		clickB.play();
 		deactivateAgeGroupButtons();
 		pauseAmbience();
 		chosenAge = '#senior';
@@ -120,17 +141,18 @@ function activateAgeGroupButtons() {
 			activateChoiceButtonsOptAoptB();			
 		},3000);
 	});
-	
 }
 
 function deactivateAgeGroupButtons() {
-	$('#teenager').unbind('click');
-	$('#youngadult').unbind('click');
-	$('#adult').unbind('click');
-	$('#senior').unbind('click');
+	$('#teenager').unbind('mousedown mouseup');
+	$('#youngadult').unbind('mousedown mouseup');
+	$('#adult').unbind('mousedown mouseup');
+	$('#senior').unbind('mousedown mouseup');
 }
 function activateChoiceButtonsOptAoptB() {
-	$("#choiceOptA").click(function(){
+	$('#choiceOptA').mousedown(function(){ clickA.play(); });
+	$("#choiceOptA").mouseup(function(){
+		clickB.play();
 		$(chosenAge).addClass('screen3');
 		$("#choiceOptA").removeClass('moveIn').css({'webkit-transition':'all 1.3s ease .75s' }).addClass('screen3');
 		$("#opCost2").removeClass('moveIn').addClass('screen3');
@@ -146,7 +168,9 @@ function activateChoiceButtonsOptAoptB() {
 		dropThese(['#imagine', '#imagineA', '#imagineB', '#chooseWhich']);
 		moveinThese(['#opCostFlipContainer','#opCostHeadA','#opCostSubheadA', '#opCostTextA', '#nextButton']);
 	});
-	$("#choiceOptB").click(function(){
+	$('#choiceOptB').mousedown(function(){ clickA.play(); });
+	$("#choiceOptB").mouseup(function(){
+		clickB.play();
 		$(chosenAge).addClass('screen3');
 		$("#choiceOptB").removeClass('moveIn').css({'webkit-transition':'all 1.3s ease .75s' }).addClass('screen3');
 		$("#opCost2").removeClass('moveIn').addClass('screen3');
@@ -166,12 +190,14 @@ function activateChoiceButtonsOptAoptB() {
 
 }
 function deactivateChoiceButtonsOptAoptB() {
-	$('#choiceOptA').unbind('click');
-	$('#choiceOptB').unbind('click');
+	$('#choiceOptA').unbind('mousedown mouseup');
+	$('#choiceOptB').unbind('mousedown mouseup');
 }
 
 function activateNextButtonOptAoptB() { 
-	$("#nextButton").click(function(){
+	$('#nextButton').mousedown(function(){ clickA.play(); });
+	$("#nextButton").mouseup(function(){
+		clickB.play();
 		$(chosenAge).removeClass('screen3');
 		$("#chooseWhich").removeClass('drop', 'moveIn');	
 		$("#opCost2").removeClass('screen3');
@@ -191,11 +217,13 @@ function activateNextButtonOptAoptB() {
 	});
 }
 function deactivateNextButton() {
-	$('#nextButton').unbind('click').removeClass('moveIn drop');
+	$('#nextButton').unbind('mousedown mouseup').removeClass('moveIn drop');
 }
 
 function activateChoiceButtonsOptCoptD() { 
-	$("#choiceOptC").click(function(){
+	$('#choiceOptC').mousedown(function(){ clickA.play(); });
+	$("#choiceOptC").mouseup(function(){
+		clickB.play();
 		$("#opCost2").removeClass('moveIn').addClass('screen3');
 		$(chosenAge).addClass('screen3');	
 		$("#choiceOptC").removeClass('moveIn').css({'webkit-transition':'all 1.3s ease .75s' }).addClass('screen3');
@@ -216,7 +244,9 @@ function activateChoiceButtonsOptCoptD() {
 		thingsToDisplay.push('#choiceOptC','#choiceOptD' )
 
 	});
-	$("#choiceOptD").click(function(){
+	$('#choiceOptD').mousedown(function(){ clickA.play(); });
+	$("#choiceOptD").mouseup(function(){
+		clickB.play();
 		$("#opCost2").removeClass('moveIn').addClass('screen3');
 		$(chosenAge).addClass('screen3');	
 		$("#choiceOptC").addClass('blurBack');
@@ -238,12 +268,14 @@ function activateChoiceButtonsOptCoptD() {
 	});
 }
 function deactivateChoiceButtonsOptCoptD() {
-	$('#choiceOptC').unbind('click');
-	$('#choiceOptD').unbind('click');
+	$('#choiceOptC').unbind('mousedown mouseup'); 
+	$('#choiceOptD').unbind('mousedown mouseup');
 }
 
 function activateNextButtonOptCoptD() { 
-	$("#nextButton").click(function(){
+	$('#nextButton').mousedown(function(){ clickA.play(); });
+	$("#nextButton").mouseup(function(){
+		clickB.play();
 		pauseAmbience();	
 		$("#opCost2").removeClass('screen3');
 		setTimeout(function(){
@@ -262,19 +294,23 @@ function activateNextButtonOptCoptD() {
 
 
 function activateRestartButton() { 
-	$("#restartButton").click(function(){
+	$('#restartButton').mousedown(function(){ clickA.play(); });
+	$("#restartButton").mouseup(function(){
+		clickB.play();
 		$(chosenAge).removeClass('screen3');
-		$("#chooseWhich").removeClass('drop moveIn');		
+		$("#chooseWhich").removeClass('drop moveIn');	
+		$('#attract').css({'display':'block' });	
 		setTimeout(function(){
 			cleanupClasses();
 			deactivateRestartButton();
-			restartIntro();
+			//restartIntro();
+			launchAttract();
 		},3000);
 		dropThese(thingsToDisplay);		
 	});
 }
 
-function deactivateRestartButton() { $('#restartButton').unbind('click').removeClass('moveIn drop');  }
+function deactivateRestartButton() { $('#restartButton').unbind('mousedown mouseup').removeClass('moveIn drop');  }
 
 function fillSection( sectionId ) {
 	var iD = sectionId;
@@ -334,7 +370,9 @@ if ( countDown-- ) {
 			//	 or  these three lines /**/
 			$("#inactivityAlertBox").removeClass('showMe'); //
 			inactivityAlertVisible = false; //
-			launchAttract(); //
+			$('#attract').css({'display':'block' });	
+			setTimeout(function(){ launchAttract(); },1000);
+			 //
 		}
 }
 
@@ -344,9 +382,13 @@ function resetInactivityTimer() {
 	if (attractIsPlaying) { //  
 		attractIsPlaying = false;
 		prepareForLaunch();
+		clickA.play();
+		setTimeout(function(){ clickB.play(); },300);
 	} else if ( inactivityAlertVisible ) {
 		$("#inactivityAlertBox").removeClass('showMe'); 
 		inactivityAlertVisible = false;
+		clickA.play();
+		setTimeout(function(){ clickB.play(); },180);
 	} else {
 		timerCallback = secondsCounter;
 		inactivityCount=0;
@@ -358,89 +400,49 @@ function launchAttract() {
 	cleanupClasses();
 	attractIsPlaying=true;
 	clearInterval(inactivityTimer);
-	
+	pauseAmbience();
 	if (visibiltyAccess) {
 		visibiltyAccess = false;
 		$('#outerContainer').removeClass('makeNegative');
 	}
+	//$('#attract').css({'display':'block' });
 	
-	
-	ageCount=0;
-	$('#attract').removeClass().css({'display':'block' });
 	$('#attract').addClass('fadein');
-	$('#attractBalance').removeClass();
-	
-	setTimeout(function(){
-		$('#attractBalance').addClass('fadein');
-	}, 1000);
-	
-		$("#iconL1").removeClass().addClass('senior'); 
-		$("#iconL2").removeClass().addClass('senior'); 
-		$("#iconR1").removeClass().addClass('senior'); 
-		$("#iconR2").removeClass().addClass('senior'); 
-
-	setTimeout(function(){
-		$("#iconR2").addClass('approachToSwap'); 
-		$("#iconL1").addClass('approachToSwap'); 
-	}, 2000);
-
-
-	setTimeout(function(){ 
-		playAttractAnim(); 
-		attractLooper = setInterval(function(){playAttractAnim()},17000);
-	}, 3000);
-}
-function playAttractAnim() {
-	$('#balanceStruct').removeClass().addClass(agegroupArray[ageCount]);
-	setTimeout(function(){ $("#titleA").addClass('approach'); },000);
-	setTimeout(function(){ $("#titleB").addClass('approach'); },800);
-	setTimeout(function(){ $("#titleC").addClass('approach'); },1600);
-	setTimeout(function(){ $("#titleD").addClass('approach'); },2400);	
-	setTimeout(function(){ $("#titleQM").addClass('approach'); },3100);
-	
-	setTimeout(function(){ $("#titleA").removeClass('approach'); },4000);
-	setTimeout(function(){ $("#titleB").removeClass('approach'); },5000);
-	setTimeout(function(){ $("#titleC").removeClass('approach'); },6000);
-	setTimeout(function(){ $("#titleD").removeClass('approach'); },7000);
-	setTimeout(function(){ $("#titleQM").removeClass('approach'); },8000);
-	
-	setTimeout(function(){ $("#iconR1").addClass('approachToSwap'); },5300);
-	setTimeout(function(){ $("#iconR2").addClass('pushedSwap'); },5500);
-	setTimeout(function(){ $("#iconR2").removeClass().addClass(agegroupArray[ageCount]); $("#balanceStruct").addClass('tilt'); },6500);
-	setTimeout(function(){ $("#iconL2").addClass('approachToSwap'); },8300);
-	setTimeout(function(){ $("#iconL1").addClass('pushedSwap'); },8500);
-	setTimeout(function(){ $("#iconL1").removeClass().addClass(agegroupArray[ageCount]); $("#balanceStruct").removeClass('tilt'); },9500);	
-	setTimeout(function(){ $("#iconR2").addClass('approachToSwap'); },11300);
-	setTimeout(function(){ $("#iconR1").addClass('pushedSwap'); },11500);
-	setTimeout(function(){ $("#iconR1").removeClass().addClass(agegroupArray[ageCount]); $("#balanceStruct").addClass('tilt'); },12500);
-	setTimeout(function(){ $("#iconL1").addClass('approachToSwap'); },14300);
-	setTimeout(function(){ $("#iconL2").addClass('pushedSwap'); },14500);
-	setTimeout(function(){ $("#iconL2").removeClass().addClass(agegroupArray[ageCount]); $("#balanceStruct").removeClass('tilt'); },15500);
-	advanceSection();
+	//document.getElementsByTagName('video').currentTime = 0;
+	//$('#attract').addClass('fadein');
+	setTimeout(function(){ document.getElementById('attractvideo').play(); },2000);
 
 }
+
 function advanceSection() {
 	ageCount++;
 	ageCount%=4;
 }
 
 function prepareForLaunch() {
-	clearInterval(attractLooper);
-	$('#attract').addClass('fadeout');
-	setTimeout(function(){ restartIntro(); },1000);
+	//$('#attract').addClass('fadeout');
+	$('#attract').removeClass();
+	setTimeout(function(){ $('#attract').css({'display':'none' }); },2000);
+
+	setTimeout(function(){ 
+		restartIntro();
+		document.getElementById('attractvideo').pause();
+		document.getElementById('attractvideo').currentTime = 0;
+ 	},1000);
+	
 }
 
 function restartIntro() {
-	$('#attract').css({'display':'none' });
-		$("#qmark").addClass('spin');
-		setTimeout(function(){ pauseAmbience(); },1000);
-		//pauseAmbience();	,,
-		moveinTiming = [0, 2.33, 1.33, 1.33, .33, 1.66, .99, .33, .25, .25, .25, .25];
-		setTimeout(function(){
-			moveinSlow(['#title', '#opChoiceA', '#opChoiceB','#moneyContainer','#opCost' , '#seeHowItWorks', '#chooseAgeGroup' ,'#teenager', '#youngadult', '#adult', '#senior']);
-		},100);
-		setTimeout(function(){ resumeAmbience(); },11000);
-		setTimeout(function(){ activateAgeGroupButtons(); },11000);  //10500)  we need enough delay so that moveinSLow delaye3d call to remove styles is complete.
+	//$('#attract').css({'display':'none' });
+	$("#qmark").addClass('spin');
+	setTimeout(function(){ pauseAmbience(); },1000);
+	//pauseAmbience();
+	moveinTiming = [0, 2.33, 1.33, 1.33, .33, 1.66, .99, .33, .25, .25, .25, .25];
+	setTimeout(function(){
+		moveinSlow(['#title', '#opChoiceA', '#opChoiceB','#moneyContainer','#opCost' , '#seeHowItWorks', '#chooseAgeGroup' ,'#teenager', '#youngadult', '#adult', '#senior']);
+	},100);
+	setTimeout(function(){ resumeAmbience(); },11000);
+	setTimeout(function(){ activateAgeGroupButtons(); },11000);  //10500)  we need enough delay so that moveinSLow delaye3d call to remove styles is complete.
 }
 
 function cleanupClasses(){
