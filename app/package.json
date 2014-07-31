@@ -1,12 +1,14 @@
-
 {
   "main": "index.html",
-  "name": "nw-demo",
-  "description": "demo app of node-webkit",
+  "name": "What_do_you_want",
+  "description": "What Do you Want",
   "version": "0.1.0",
-  "keywords": [ "demo", "node-webkit" ],
+  "keywords": [
+    "demo",
+    "node-webkit"
+  ],
   "window": {
-    "title": "node-webkit demo",
+    "title": "What Do You Want?",
     "toolbar": true,
     "frame": false,
     "width": 1080,
@@ -19,5 +21,8 @@
   },
   "webkit": {
     "plugin": true
+  },
+  "devDependencies": {
+    "grunt-node-webkit-builder": "^0.1.21"
   }
 }
