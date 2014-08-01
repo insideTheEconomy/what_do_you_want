@@ -12,6 +12,7 @@ body { 	background: #000;
 -o-user-select:none; /* no support? */
 user-select:none; /* no support? */
 }
+
 body.macbookpro {
 	/*-webkit-transform-origin:50% 0%;*/
 	-webkit-transform:rotate(90deg) scale(.73,.73); /* Safari and Chrome */
@@ -35,6 +36,9 @@ body.smacbookpro:-ms-full-screen { transform:scale(.45,.45); -ms-transform:scale
 body.smacbookpro:-o-full-screen { -o-transform:scale(.45,.45); } /* IE 9 */ 
 body.smacbookpro:full-screen { transform:scale(.45,.45); } /* www */
 body.smacbookpro:fullscreen { transform:scale(.45,.45); } /* www */
+
+.hidemouse *, .hidemouse a { cursor:none;  }
+
 
 @-webkit-keyframes animatedBackground {
 	from { background-position: 0px 0px; background-size:100% 100%; }
