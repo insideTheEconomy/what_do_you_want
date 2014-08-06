@@ -12,117 +12,113 @@ function MM_callJS(jsStr) { //v2.0
 }
 </script>
 </head>
-<body class="smacbookpro" onLoad="MM_callJS('initializeMe()')">
+<!--<body class="smacbookpro" onLoad="MM_callJS('initializeMe()')">
+-->
+<body onLoad="MM_callJS('initializeMe()')">
 <div id="outerContainer">
-
 <div id="innerContainer">
 <div id="content">
 	<div id="visualaccess">&nbsp;</div>
 	<div id="qmark" class="hideb4anim"><img src="images/questionMark.png" width="738" height="746" alt=""/></div>
 	<div id="balance"><img src="images/balance.png" width="568" height="488" alt=""/></div>
 	<div id="clock"><img src="images/clock.png" width="512" height="512" alt=""/></div>
-	<div id="moneyContainer"><div id="money">
-    <img id="b1" src="images/bill20.jpg" width="1562" height="656" alt=""/><img id="b2" src="images/bill10.jpg" width="1562" height="656" alt=""/><img  id="b3" src="images/bill20.jpg" width="1562" height="656" alt=""/></div></div>
-    <h1 id="title">What Do You Want?</h1>
-    <div id="opChoiceA" >Every time you make a choice...</div>
-    <div id="opChoiceB" >...you must give something up.</div>
-    <div id="opCost">What you give up is your <p>Opportunity Cost</p></div>
-    <div id="seeHowItWorks">See how it works in your life</div>
-    <div id="chooseAgeGroup">Choose an age group</div>
-    <div id="teenager" class="ageGroupButtons"><div class="buttonContainer"><h3>Teenager</h3></div></div>
-    <div id="youngadult" class="ageGroupButtons"><div class="buttonContainer"><h3>Young Adult</h3></div></div>
-    <div id="adult" class="ageGroupButtons"><div class="buttonContainer"><h3>Adult</h3></div></div>
-    <div id="senior" class="ageGroupButtons"><div class="buttonContainer"><h3>Senior</h3></div></div>
-    <div id="sectionSet">
-    <!-- screen 2 -->
-    <div id="opCost2"><h2>Opportunity Cost</h2><p>What YOU give up When you CHOOSE Between things</p></div>
-    <div id="imagine">Imagine...</div>
-    <div id="imagineA">It's a Sunday afternoon.</div>
-    <div id="imagineB">You have to decide what to do.</div>
-    
-    <!-- Decide Mow/Movie -->
-    <div id="chooseWhich">Which Would You Choose?</div>
-    <div id="choiceOptA" >Mow the Neighbor's Lawn and Earn $20</div>
-    <div id="choiceOptB" >Go To a Movie<br>and Spend $10</div>
-    
-    <!-- Chosen: Mow Lawn -->
-    
-    <div id="opCostFlipContainer">
-    	<div id="opCostFlip">
-    	<div class="frontSide">The Opportunity Cost of </div>
-    	<div class="backSide">What You Gave Up By </div>
-       </div>
-   </div>
-    <div id="opCostHeadA">Mowing the Grass:</div>
-    <div id="opCostSubheadA">Seeing the movie with your friends.</div>
-    <p id="opCostTextA">Earning $20 was worth more to you than seeing the movie. Plus you saved $10 by not buying a movie ticket.</p>
-    
-     <!-- Chosen: Movie -->
-   <div id="opCostHeadB">Going to the Movie:</div>
-   <div id="opCostSubheadB">$10 for movie tickets + $20 for mowing grass = $30</div>
-   <p id="opCostTextB">You wanted to see the movie with your friends more than you wanted what you could buy with $30.</p>
-   
-	<div id="nextButton">next</div>
-    
-    <!-- Decide party/pantry -->
-    <div id="timeToDecide">Now it's time to make a decision with different consequences.</div>
-    <div id="chooseCorD">You've made plans to do volunteer work at a food pantry tonight. But there's a farewell party for a friend.</div>
-    
-    <div id="choiceOptC" >Go To Your Friend’s Party</div>
-    <div id="choiceOptD" >Work at the<br />Food Pantry</div>
+	<div id="moneyContainer">
+  	<div id="money">
+   		<img id="b1" src="images/bill20.jpg" width="1562" height="656" alt=""/>
+    	<img id="b2" src="images/bill10.jpg" width="1562" height="656" alt=""/>
+    	<img  id="b3" src="images/bill20.jpg" width="1562" height="656" alt=""/>
+    </div>
+  </div>
+  <h1 id="title">What Do You Want?</h1>
+  <div id="opChoiceA" >Every time you make a choice...</div>
+  <div id="opChoiceB" >...you must give something up.</div>
+  <div id="opCost">What you give up is your <p>Opportunity Cost</p></div>
+  <div id="seeHowItWorks">See how it works in your life</div>
+  <div id="chooseAgeGroup">Choose an age group</div>
+  <div id="teenager" class="ageGroupButtons"><div class="buttonContainer"><h3>Teenager</h3></div></div>
+  <div id="youngadult" class="ageGroupButtons"><div class="buttonContainer"><h3>Young Adult</h3></div></div>
+  <div id="adult" class="ageGroupButtons"><div class="buttonContainer"><h3>Adult</h3></div></div>
+  <div id="senior" class="ageGroupButtons"><div class="buttonContainer"><h3>Senior</h3></div></div>
+  <div id="sectionSet">
+  <!-- screen 2 -->
+  <div id="opCost2"><h2>Opportunity Cost</h2><p>What YOU give up When you CHOOSE Between things</p></div>
+  <div id="imagine">Imagine...</div>
+  <div id="imagineA">It's a Sunday afternoon.</div>
+  <div id="imagineB">You have to decide what to do.</div>
+  
+  <!-- Decide Mow/Movie -->
+  <div id="chooseWhich">Which Would You Choose?</div>
+  <div id="choiceOptA" >Mow the Neighbor's Lawn and Earn $20</div>
+  <div id="choiceOptB" >Go To a Movie<br>and Spend $10</div>
+  
+  <!-- Chosen: Mow Lawn -->
+  
+  <div id="opCostFlipContainer">
+    <div id="opCostFlip">
+      <div class="frontSide">The Opportunity Cost of </div>
+      <div class="backSide">What You Gave Up By </div>
+    </div>
+  </div>
+  <div id="opCostHeadA">Mowing the Grass:</div>
+  <div id="opCostSubheadA">Seeing the movie with your friends.</div>
+  <p id="opCostTextA">Earning $20 was worth more to you than seeing the movie. Plus you saved $10 by not buying a movie ticket.</p>
+  
+   <!-- Chosen: Movie -->
+  <div id="opCostHeadB">Going to the Movie:</div>
+  <div id="opCostSubheadB">$10 for movie tickets + $20 for mowing grass = $30</div>
+  <p id="opCostTextB">You wanted to see the movie with your friends more than you wanted what you could buy with $30.</p>
  
-   <!-- Chosen: Party -->
-   <div id="opCostHeadC">Going to the Party:</div>
-   <div id="opCostSubheadC">The satisfaction of helping others by working at the food pantry.</div>
-   <p id="opCostTextC">You wanted to say goodbye to your friend rather than work at the food pantry.</p>
-
- 	<!-- Chosen: Pantry -->
-   <div id="opCostHeadD">working at the food pantry:</div>
-   <div id="opCostSubheadD">The chance to say farewell to your friend.</div>
-   <p id="opCostTextD">You felt your commitment to help at the food pantry was more important.</p>
+  <div id="nextButton">next</div>
     
-    <!-- Final Screen -->
+  <!-- Decide party/pantry -->
+  <div id="timeToDecide">Now it's time to make a decision with different consequences.</div>
+  <div id="chooseCorD">You've made plans to do volunteer work at a food pantry tonight. But there's a farewell party for a friend.</div>
+  
+  <div id="choiceOptC" >Go To Your Friend’s Party</div>
+  <div id="choiceOptD" >Work at the<br />Food Pantry</div>
+
+ <!-- Chosen: Party -->
+ <div id="opCostHeadC">Going to the Party:</div>
+ <div id="opCostSubheadC">The satisfaction of helping others by working at the food pantry.</div>
+ <p id="opCostTextC">You wanted to say goodbye to your friend rather than work at the food pantry.</p>
+
+<!-- Chosen: Pantry -->
+ <div id="opCostHeadD">working at the food pantry:</div>
+ <div id="opCostSubheadD">The chance to say farewell to your friend.</div>
+ <p id="opCostTextD">You felt your commitment to help at the food pantry was more important.</p>
+  
+  <!-- Final Screen -->
 	<div id="opCostHelp">Considering opportunity cost helps you better understand</div>
-    <!-- <div id="opAmpersand">&amp;</div> -->
-    <div id="opCostUnderstandA">what you are giving up&#8230;</div>
-    <div id="opCostUnderstandB">...whenever you make a choice.</div>
-    <fieldset id="finalConsiderations">
-    	<legend>More choices to think about</legend>
-    	<!-- <div id="finalWhich">More choices to think about</div> -->
-       <div id="caseA"><b>You have an extra hour in the evening.</b> Will you practice the piano or will you study for an exam?</div>
-       <div id="caseB"><b>You got some money for your birthday.</b> Will you put the money in your college fund or buy a game system?</div>
-    </fieldset>
+  <!-- <div id="opAmpersand">&amp;</div> -->
+  <div id="opCostUnderstandA">what you are giving up&#8230;</div>
+  <div id="opCostUnderstandB">...whenever you make a choice.</div>
+  <fieldset id="finalConsiderations">
+    <legend>More choices to think about</legend>
+      <!-- <div id="finalWhich">More choices to think about</div> -->
+      <div id="caseA"><b>You have an extra hour in the evening.</b> Will you practice the piano or will you study for an exam?</div>
+      <div id="caseB"><b>You got some money for your birthday.</b> Will you put the money in your college fund or buy a game system?</div>
+  </fieldset>
  	<div id="restartButton">restart</div>
-   </div> <!-- #sectionSet -->
+</div> <!-- #sectionSet -->
 </div> <!-- #content -->
 <div id="inactivityAlertBox">
 	<h2>Please touch the screen or the program will reset due to inactivity...</h2>
   <center></center>
-</div>	<!-- #inactivityAlertBox -->
+</div>	
 <div id="attract">
-	<h1 id="titleA">What</h1>
-	<h1 id="titleB">Do</h1>
-	<h1 id="titleC">You</h1>
-	<h1 id="titleD">Want</h1>
-	<h1 id="titleQM">&nbsp;  </h1>
-  <div id="attractBalance">
-  	<div id="balanceFrame"></div>	
-  	<div id="balanceStruct" >
-    	<div id="balancePanA">
-    		<div id="iconL1" class="senior approachToSwap"></div>
-    		<div id="iconL2" class="teenager "></div>
-    	</div>	
-    	<div id="balancePanB">
-    		<div id="iconR1" class="teenager "></div>
-    		<div id="iconR2" class="senior approachToSwap"></div>
-    	</div>	
-    	<span id="balanceBeam"></span>
-  	</div>	
-  </div>	<!-- #balance -->
+
+<video id="attractvideo" width="1080" height="1920" controls autoplay loop>
+
+<source src="WDYW-attract_video.ogv" type='video/ogg; codecs="theora, vorbis"'>
+
+</video><!--  -->
  
 </div>	<!-- #attract -->
 </div> <!-- #innerContainer -->
 </div> <!-- #outerContainer -->
+<audio id = "clickA" style="display: none;" src="sounds/onClick.ogg"></audio>
+<audio id = "clickB" style="display: none;" src="sounds/offClick.ogg"></audio>
+
 <script>
 // Load native UI library
 var gui = require('nw.gui');//or global.window.nwDispatcher.requireNwGui() (see https://github.com/rogerwang/node-webkit/issues/707)

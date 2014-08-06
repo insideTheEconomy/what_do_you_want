@@ -11,8 +11,8 @@ body { 	background: #000;
 -ms-user-select:none; 
 -o-user-select:none; /* no support? */
 user-select:none; /* no support? */
+margin:0;
 }
-
 body.macbookpro {
 	/*-webkit-transform-origin:50% 0%;*/
 	-webkit-transform:rotate(90deg) scale(.73,.73); /* Safari and Chrome */
@@ -36,9 +36,6 @@ body.smacbookpro:-ms-full-screen { transform:scale(.45,.45); -ms-transform:scale
 body.smacbookpro:-o-full-screen { -o-transform:scale(.45,.45); } /* IE 9 */ 
 body.smacbookpro:full-screen { transform:scale(.45,.45); } /* www */
 body.smacbookpro:fullscreen { transform:scale(.45,.45); } /* www */
-
-.hidemouse *, .hidemouse a { cursor:none;  }
-
 
 @-webkit-keyframes animatedBackground {
 	from { background-position: 0px 0px; background-size:100% 100%; }
@@ -193,16 +190,20 @@ body.smacbookpro:fullscreen { transform:scale(.45,.45); } /* www */
 	position:absolute;
 	bottom:0%;
 	right:0%;
+	opacity:.7;
 	/*background:hsla(62,94%,47%,0.24);*/
 	width:100px;
 	height:80px;
 	cursor: pointer; 
 	cursor: hand;
 	z-index:5000;
+	background:url(images/accessible.png) 100% 100% no-repeat;
+
 }
 h1, #title, #titleA, #titleB, #titleC, #titleD, #titleQM { 
 	position: absolute;
 	font-family: "Univers-Ultra-Condensed", sans-serif;
+	font-weight:normal;
 	color:#a0f0fd;
 	font-size:9em;
 	text-transform: uppercase;
@@ -845,7 +846,10 @@ h1, #title, #titleA, #titleB, #titleC, #titleD, #titleQM {
 	left:0; 
 	-webkit-transition: all ease 1.5s;
 	/*-webkit-animation: fadeInFromNone 1s linear backwards;*/
+	z-index:6000;
+		-webkit-transform-origin:0% 50%;
 
+	-webkit-transform:scale(1.007);
 }
 #attract.fadein {
 	opacity:1;
@@ -853,7 +857,7 @@ h1, #title, #titleA, #titleB, #titleC, #titleD, #titleQM {
 	-webkit-animation: fadeInFromNone 1s linear forwards;*/
 }
 #attract.fadein.fadeout { opacity:0; }
-#attractvideo { user-select:none; -webkit-user-select:none; }
+#attractvideo { user-select:none; -webkit-user-select:none; height:1920px; }
 ::-webkit-media-controls  { display:none !important; }
 #attract h1 { -webkit-perspective(350px); }
 #attract h2 { color:white;  }
