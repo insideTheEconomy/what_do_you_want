@@ -40,7 +40,7 @@
             "sectionSet":"yadult",
             "buttonText":"Young Adult",
             "imagineA":"You just got your first job.",
-            "imagineB":"You are not making enough money to afford an apartment on your own.",
+            "imagineB":"You are not making enough money to afford an apartment unless you share it with roommates.",
             "choiceOptA":"Share an apartment with roommates",
             "choiceOptB":"Live rent-free with your parents",
             "iconOptA":"yadulta.png",
