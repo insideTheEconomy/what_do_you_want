@@ -1,6 +1,6 @@
 // JavaScript Document
 
-var thingsToDrop = [], moveinTiming = [], jsonObj = {}, chosenAge = '', visibiltyAccess=false, ageCount=1, inactivityTimer, attractLooper, timerCallback, inactivityCount=0, countDown=0, inactivityAlertVisible = false, inactivityTolerance= 30;
+var thingsToDrop = [], moveinTiming = [], jsonObj = {}, chosenAge = '', visibilityAccess=false, ageCount=1, inactivityTimer, attractLooper, timerCallback, inactivityCount=0, countDown=0, inactivityAlertVisible = false, inactivityTolerance= 30;
 var agegroupArray=['teenager', 'yadult', 'adult', 'senior'];
 
 function initializeMe() {
@@ -60,15 +60,16 @@ function initializeMe() {
 }
 function toggleVisibility() {
 	clickB.play()
-	if (!visibiltyAccess) {
+	if (!visibilityAccess) {
 		$('#outerContainer').addClass('makeNegative');
-		visibiltyAccess=true;
+		visibilityAccess=true;
 	} else {
 		$('#outerContainer').removeClass('makeNegative');
-		visibiltyAccess=false;
+		visibilityAccess=false;
 	}
 }
 function activateAgeGroupButtons() {
+	
 	$('#teenager').mousedown(function(){ clickA.play(); });
 	$("#teenager").mouseup(function(){
 		clickB.play();
@@ -86,7 +87,7 @@ function activateAgeGroupButtons() {
 			resumeAmbience();
 			$('#qmark').removeClass().addClass('screen2');
 			activateChoiceButtonsOptAoptB();			
-		},3000);
+		}, 4500);
 	});
 	
 	$('#youngadult').mousedown(function(){ clickA.play(); });
@@ -107,7 +108,7 @@ function activateAgeGroupButtons() {
 			resumeAmbience();
 			$('#qmark').removeClass().addClass('screen2');
 			activateChoiceButtonsOptAoptB();			
-		},3000);
+		},4500);
 	});
 
 	$('#adult').mousedown(function(){ clickA.play(); });
@@ -128,7 +129,7 @@ function activateAgeGroupButtons() {
 			resumeAmbience();
 			$('#qmark').removeClass().addClass('screen2');
 			activateChoiceButtonsOptAoptB();			
-		},3000);
+		},4500);
 	});
 	
 	$('#senior').mousedown(function(){ clickA.play(); });
@@ -149,7 +150,7 @@ function activateAgeGroupButtons() {
 			resumeAmbience();
 			$('#qmark').removeClass().addClass('screen2');
 			activateChoiceButtonsOptAoptB();			
-		},3000);
+		},4500);
 	});
 }
 
@@ -169,10 +170,10 @@ function activateChoiceButtonsOptAoptB() {
 		$("#choiceOptB").addClass('blurBack');
 		$("#opCostFlipContainer").removeClass();
 		setTimeout(function(){ $("#clock").addClass('screen3')},500);
+		deactivateChoiceButtonsOptAoptB();
 		pauseAmbience();
 		setTimeout(function(){
 			resumeAmbience();
-			deactivateChoiceButtonsOptAoptB();
 			activateNextButtonOptAoptB();
 		},3000);
 		dropThese(['#imagine', '#imagineA', '#imagineB', '#chooseWhich']);
@@ -188,10 +189,10 @@ function activateChoiceButtonsOptAoptB() {
 		$("#opCostFlipContainer").removeClass();
 
 		setTimeout(function(){ $("#clock").addClass('screen3')},500);
+		deactivateChoiceButtonsOptAoptB();
 		pauseAmbience();
 		setTimeout(function(){
 			resumeAmbience();
-			deactivateChoiceButtonsOptAoptB();
 			activateNextButtonOptAoptB();
 		},3000);
 		dropThese(['#imagine', '#imagineA', '#imagineB', '#chooseWhich']);
@@ -213,10 +214,10 @@ function activateNextButtonOptAoptB() {
 		$("#opCost2").removeClass('screen3');
 
 		setTimeout(function(){ $("#clock").removeClass('screen3')},200);
+		deactivateNextButton();
 		pauseAmbience();
 		setTimeout(function(){
 			resumeAmbience();
-			deactivateNextButton();
 			activateChoiceButtonsOptCoptD();
 			$("#opCostFlipContainer").addClass('stopped');
 		},3000);
@@ -241,10 +242,10 @@ function activateChoiceButtonsOptCoptD() {
 		$("#opCostFlipContainer").removeClass();
 		setTimeout(function(){ $("#clock").addClass('screen3')},500);
 		$('#qmark').removeClass().addClass('screen3');
+		deactivateChoiceButtonsOptCoptD();
 		pauseAmbience();
 		setTimeout(function(){
 			resumeAmbience();
-			deactivateChoiceButtonsOptCoptD();
 			activateNextButtonOptCoptD();
 		},3000);
 		$("#chooseWhich").removeClass('drop', 'moveIn');	
@@ -264,10 +265,10 @@ function activateChoiceButtonsOptCoptD() {
 		$("#opCostFlipContainer").removeClass();
 		setTimeout(function(){ $("#clock").addClass('screen3')},500);
 		$('#qmark').removeClass().addClass('screen3');
+		deactivateChoiceButtonsOptCoptD();
 		pauseAmbience();	
 		setTimeout(function(){
 			resumeAmbience();	
-			deactivateChoiceButtonsOptCoptD();
 			activateNextButtonOptCoptD();
 		},3000);
 		$("#chooseWhich").removeClass('drop', 'moveIn');	
@@ -286,11 +287,11 @@ function activateNextButtonOptCoptD() {
 	$('#nextButton').mousedown(function(){ clickA.play(); });
 	$("#nextButton").mouseup(function(){
 		clickB.play();
+		deactivateNextButton();
 		pauseAmbience();	
 		$("#opCost2").removeClass('screen3');
 		setTimeout(function(){
 			resumeAmbience();	
-			deactivateNextButton();
 			activateRestartButton();
 			$("#opCostFlipContainer").addClass('stopped');
 			
@@ -304,23 +305,27 @@ function activateNextButtonOptCoptD() {
 
 
 function activateRestartButton() { 
+	console.log( "activateRestartButton" );
+
 	$('#restartButton').mousedown(function(){ clickA.play(); });
 	$("#restartButton").mouseup(function(){
 		clickB.play();
+		deactivateRestartButton();
 		$(chosenAge).removeClass('screen3');
 		$("#chooseWhich").removeClass('drop moveIn');	
 		$('#attract').css({'display':'block' });	
 		setTimeout(function(){
 			cleanupClasses();
-			deactivateRestartButton();
-			//restartIntro();
 			launchAttract();
 		},3000);
 		dropThese(thingsToDisplay);		
 	});
 }
 
-function deactivateRestartButton() { $('#restartButton').unbind('mousedown mouseup').removeClass('moveIn drop');  }
+function deactivateRestartButton() {
+	console.log( "deactivateRestartButton" );
+	$('#restartButton').unbind('mousedown mouseup').removeClass('moveIn drop');
+}
 
 function fillSection( sectionId ) {
 	var iD = sectionId;
@@ -372,7 +377,7 @@ function inactivityAlert() {
 }
 
 function secondsCountdown() {
-if ( countDown-- ) {
+	if ( countDown-- ) {
 			$("#inactivityAlertBox center").html(countDown);
 		} else {
 			clearInterval(inactivityTimer);
@@ -407,12 +412,13 @@ function resetInactivityTimer() {
 }
 
 function launchAttract() {
+	console.log( "launchAttract" );
 	cleanupClasses();
 	attractIsPlaying=true;
 	clearInterval(inactivityTimer);
 	pauseAmbience();
-	if (visibiltyAccess) {
-		visibiltyAccess = false;
+	if (visibilityAccess) {
+		visibilityAccess = false;
 		$('#outerContainer').removeClass('makeNegative');
 	}
 	//$('#attract').css({'display':'block' });
@@ -445,8 +451,8 @@ function prepareForLaunch() {
 function restartIntro() {
 	//$('#attract').css({'display':'none' });
 	$("#qmark").addClass('spin');
-	setTimeout(function(){ pauseAmbience(); },1000);
-	//pauseAmbience();
+	//setTimeout(function(){ pauseAmbience(); },1000);
+	pauseAmbience();
 	moveinTiming = [0, 2.33, 1.33, 1.33, .33, 1.66, .99, .33, .25, .25, .25, .25];
 	setTimeout(function(){
 		moveinSlow(['#title', '#opChoiceA', '#opChoiceB','#moneyContainer','#opCost' , '#seeHowItWorks', '#chooseAgeGroup' ,'#teenager', '#youngadult', '#adult', '#senior']);
@@ -456,6 +462,8 @@ function restartIntro() {
 }
 
 function cleanupClasses(){
+	console.log( "cleanupClasses" );
+
 	domElements = ['#qmark', '#balance', '#clock', '#moneyContainer', '#money', '#title', '#opChoiceA', '#opChoiceB', '#opCost', '#seeHowItWorks', '#chooseAgeGroup','#teenager', '#youngadult', '#adult', '#senior', '#opCost2', '#imagine', '#imagineA', '#imagineB','#chooseWhich','#choiceOptA', '#choiceOptB', '#opCostHeadA','#opCostFlipContainer','#opCostHeadB','#opCostSubheadA','#opCostSubheadB', '#opCostTextA', '#opCostTextB', '#nextButton','#timeToDecide', '#chooseCorD', '#chooseWhich','#choiceOptC','#choiceOptD','#opCostHeadC','#opCostSubheadC', '#opCostTextC','#opCostHeadD','#opCostSubheadD', '#opCostTextD','#opCostHelp', '#opCostUnderstandA', '#opCostUnderstandB', '#opWhenever', '#finalConsiderations', '#restartButton'];
 	var l= domElements.length;
 	for (var i = 0; i < l; i++) $(domElements[i]).removeAttr( 'style' ).removeClass();
@@ -465,7 +473,7 @@ function cleanupClasses(){
 function dropThese(domElements) {	
 	var l= domElements.length;
 	for (var i = 0; i < l; i++) $(domElements[i]).css({'webkit-transition':'all .7s ease-in '+Math.random()*.3+'s'}).addClass('drop');
-	setTimeout(function(){ for (var i = 0; i < l; i++) $(domElements[i]).removeAttr( 'style' ); },2000);
+	setTimeout(function(){ for (var i = 0; i < l; i++) $(domElements[i]).removeClass().removeAttr( 'style' ); },2000);
 }
 function moveinSlow(domElements) {	
 	var l= domElements.length;
@@ -482,12 +490,15 @@ function moveinThese(domElements) {
 	setTimeout(function(){ for (var i = 0; i < l; i++) $(domElements[i]).removeAttr( 'style' ); },3000);
 }
 function pauseAmbience() {
+	console.log( "pauseAmbience" );
 	  $("#money").addClass('paused');
 	  //$("#qmark").addClass('paused');
 	  $("#innerContainer").addClass('paused');
 }
 
 function resumeAmbience() {
+		console.log( "resumeAmbience" );
+
 	  $('#money').removeClass('paused');
 	  //$('#qmark').removeClass('paused');
 	  $('#innerContainer').removeClass('paused');
